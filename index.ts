@@ -49,7 +49,7 @@ async function main() {
   const { records } = await client.loggerContract!.tail(10, { type: 'MessageOutput', contract: contract.address.toHex(), nonce: result.nonce })
   const instantiateResult = (records?.[0] as SerMessageMessageOutput).output.result
   const raw = 'ok' in instantiateResult ? instantiateResult.ok.data : ''
-  const decoded = client.api.createType('Result<Result<AccountId, Vec<u8>>, Vec<u8>>', hexToU8a(raw))
+  const decoded = client.api.createType('Result<Result<AccountId, Vec<u8>>, u8>', hexToU8a(raw))
   const contractId = decoded.asOk.asOk.toHex()
 
   console.log('The instantiated contractId: ', contractId)
