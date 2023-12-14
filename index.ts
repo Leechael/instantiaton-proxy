@@ -51,6 +51,7 @@ async function main() {
   const raw = 'ok' in instantiateResult ? instantiateResult.ok.data : ''
   const decoded = client.api.createType('Result<Result<AccountId, Vec<u8>>, u8>', hexToU8a(raw))
   const contractId = decoded.asOk.asOk.toHex()
+  // TODO: decode the constructor error according to the metadata. (See the last unit test case in lib.rs)
 
   console.log('The instantiated contractId: ', contractId)
 }
