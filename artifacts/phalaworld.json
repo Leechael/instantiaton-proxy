@@ -1,0 +1,2164 @@
+{
+  "source": {
+    "hash": "0x960473fefb47b2f3b3a2047fa3402c94efa6f389b550a186334464149c0b2e55",
+    "language": "ink! 4.2.1",
+    "compiler": "rustc 1.69.0",
+    "build_info": {
+      "build_mode": "Debug",
+      "cargo_contract_version": "3.2.0",
+      "rust_toolchain": "stable-aarch64-apple-darwin",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "phalaworld",
+    "version": "0.2.4",
+    "authors": [
+      "Leechael Yim <leechael@phala.network>"
+    ]
+  },
+  "spec": {
+    "constructors": [
+      {
+        "args": [
+          {
+            "label": "name",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 3
+            }
+          },
+          {
+            "label": "description",
+            "type": {
+              "displayName": [
+                "Option"
+              ],
+              "type": 6
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "create",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 7
+        },
+        "selector": "0xab700a1b"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 0
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 42
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 4
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 44
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 43
+      },
+      "maxEventTopics": 4,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 5
+      }
+    },
+    "events": [],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 9
+    },
+    "messages": [
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Get the NFT Collection name.",
+          "",
+          " @category Basic Information"
+        ],
+        "label": "get_collection_name",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 10
+        },
+        "selector": "0xdc163515"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Get the NFT Collection description.",
+          "",
+          " @category Basic Information"
+        ],
+        "label": "get_collection_description",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 10
+        },
+        "selector": "0xc47bbc13"
+      },
+      {
+        "args": [
+          {
+            "label": "payload",
+            "type": {
+              "displayName": [
+                "SpiritAttributes"
+              ],
+              "type": 11
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get the initial attributes for a bew Spirit Nft.",
+          "",
+          " @category Overlord Operations"
+        ],
+        "label": "set_init_attributes",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 7
+        },
+        "selector": "0xa95537f3"
+      },
+      {
+        "args": [
+          {
+            "label": "description",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Set the description text for the NFT Collection.",
+          "",
+          " For the collection owner, it can update the NFT collection description anytime.",
+          "",
+          " # Arguments",
+          "",
+          " * `description` - The new description for the NFT Collection.",
+          "",
+          " @ui description widget codemirror",
+          " @ui description options.lang markdown",
+          "",
+          " @category Overlord Operations"
+        ],
+        "label": "set_collection_description",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 7
+        },
+        "selector": "0x8a3a521e"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Get the Account ID of overlord.",
+          "",
+          " @category Basic Information"
+        ],
+        "label": "overlord",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 13
+        },
+        "selector": "0x40d68792"
+      },
+      {
+        "args": [
+          {
+            "label": "race",
+            "type": {
+              "displayName": [
+                "Option"
+              ],
+              "type": 14
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get the total number of NFTs minted.",
+          "",
+          " @category Nft"
+        ],
+        "label": "total_minted",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 16
+        },
+        "selector": "0x16af933a"
+      },
+      {
+        "args": [
+          {
+            "label": "rarity",
+            "type": {
+              "displayName": [
+                "RarityType"
+              ],
+              "type": 17
+            }
+          },
+          {
+            "label": "race",
+            "type": {
+              "displayName": [
+                "RaceType"
+              ],
+              "type": 15
+            }
+          },
+          {
+            "label": "career",
+            "type": {
+              "displayName": [
+                "CareerType"
+              ],
+              "type": 18
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get the total number of NFTs minted.",
+          "",
+          " @category Nft"
+        ],
+        "label": "mint",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 19
+        },
+        "selector": "0xcfdd9aa2"
+      },
+      {
+        "args": [
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 4
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get metadata of a specific NFT.",
+          "",
+          " @category Nft"
+        ],
+        "label": "metadata_of",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 22
+        },
+        "selector": "0x83b9340c"
+      },
+      {
+        "args": [
+          {
+            "label": "token_id",
+            "type": {
+              "displayName": [
+                "u32"
+              ],
+              "type": 4
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get basic information of a specific NFT.",
+          "",
+          " @category Nft"
+        ],
+        "label": "nft_of",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 27
+        },
+        "selector": "0x0a968063"
+      },
+      {
+        "args": [
+          {
+            "label": "token_ids",
+            "type": {
+              "displayName": [
+                "Option"
+              ],
+              "type": 30
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get basic information of a list of NFT.",
+          "",
+          " If you want to get all NFTs, just pass `None` as the argument. Otherwise, you can pass a list of token IDs.",
+          "",
+          " @category Nft"
+        ],
+        "label": "bulk_nft_of",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 32
+        },
+        "selector": "0x12671c83"
+      },
+      {
+        "args": [
+          {
+            "label": "formula",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Set the proven formula, only available from overlord.",
+          "",
+          " @ui formula widget codemirror",
+          " @ui formula options.lang javascript",
+          "",
+          " @category Overlord Operations"
+        ],
+        "label": "set_proven_formula",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 35
+        },
+        "selector": "0x2e02dfae"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          " Check the proven formula, only available from overlord.",
+          "",
+          " @category Overlord Operations"
+        ],
+        "label": "get_proven_formula",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 37
+        },
+        "selector": "0xb8c3449f"
+      },
+      {
+        "args": [
+          {
+            "label": "account",
+            "type": {
+              "displayName": [
+                "Option"
+              ],
+              "type": 39
+            }
+          }
+        ],
+        "default": false,
+        "docs": [
+          " Get the Spirit Attributes of a specific account, or the caller if not specified.",
+          "",
+          " @category Nft"
+        ],
+        "label": "prove_attributes",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 40
+        },
+        "selector": "0x69523e17"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "overlord"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 3
+                }
+              },
+              "name": "name"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 3
+                }
+              },
+              "name": "description"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 4
+                }
+              },
+              "name": "total_nfts"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x5406478f",
+                              "ty": 4
+                            }
+                          },
+                          "name": "id"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x5406478f",
+                              "ty": 0
+                            }
+                          },
+                          "name": "owner"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x5406478f",
+                              "ty": 4
+                            }
+                          },
+                          "name": "generation"
+                        },
+                        {
+                          "layout": {
+                            "enum": {
+                              "dispatchKey": "0x5406478f",
+                              "name": "RarityType",
+                              "variants": {
+                                "0": {
+                                  "fields": [],
+                                  "name": "Prime"
+                                },
+                                "1": {
+                                  "fields": [],
+                                  "name": "Magic"
+                                },
+                                "2": {
+                                  "fields": [],
+                                  "name": "Legendary"
+                                }
+                              }
+                            }
+                          },
+                          "name": "rarity"
+                        },
+                        {
+                          "layout": {
+                            "enum": {
+                              "dispatchKey": "0x5406478f",
+                              "name": "RaceType",
+                              "variants": {
+                                "0": {
+                                  "fields": [],
+                                  "name": "Cyborg"
+                                },
+                                "1": {
+                                  "fields": [],
+                                  "name": "AISpectre"
+                                },
+                                "2": {
+                                  "fields": [],
+                                  "name": "XGene"
+                                },
+                                "3": {
+                                  "fields": [],
+                                  "name": "Pandroid"
+                                }
+                              }
+                            }
+                          },
+                          "name": "race"
+                        },
+                        {
+                          "layout": {
+                            "enum": {
+                              "dispatchKey": "0x5406478f",
+                              "name": "CareerType",
+                              "variants": {
+                                "0": {
+                                  "fields": [],
+                                  "name": "HackerWizard"
+                                },
+                                "1": {
+                                  "fields": [],
+                                  "name": "HardwareDruid"
+                                },
+                                "2": {
+                                  "fields": [],
+                                  "name": "RoboWarrior"
+                                },
+                                "3": {
+                                  "fields": [],
+                                  "name": "TradeNegotiator"
+                                },
+                                "4": {
+                                  "fields": [],
+                                  "name": "Web3Monk"
+                                }
+                              }
+                            }
+                          },
+                          "name": "career"
+                        }
+                      ],
+                      "name": "Nft"
+                    }
+                  },
+                  "root_key": "0x5406478f"
+                }
+              },
+              "name": "nfts"
+            },
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 4
+                }
+              },
+              "name": "generation"
+            },
+            {
+              "layout": {
+                "enum": {
+                  "dispatchKey": "0x00000000",
+                  "name": "Option",
+                  "variants": {
+                    "0": {
+                      "fields": [],
+                      "name": "None"
+                    },
+                    "1": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x00000000",
+                              "ty": 3
+                            }
+                          },
+                          "name": "0"
+                        }
+                      ],
+                      "name": "Some"
+                    }
+                  }
+                }
+              },
+              "name": "proven_formula"
+            },
+            {
+              "layout": {
+                "struct": {
+                  "fields": [
+                    {
+                      "layout": {
+                        "leaf": {
+                          "key": "0x00000000",
+                          "ty": 4
+                        }
+                      },
+                      "name": "int"
+                    },
+                    {
+                      "layout": {
+                        "leaf": {
+                          "key": "0x00000000",
+                          "ty": 4
+                        }
+                      },
+                      "name": "dex"
+                    },
+                    {
+                      "layout": {
+                        "leaf": {
+                          "key": "0x00000000",
+                          "ty": 4
+                        }
+                      },
+                      "name": "will"
+                    },
+                    {
+                      "layout": {
+                        "leaf": {
+                          "key": "0x00000000",
+                          "ty": 4
+                        }
+                      },
+                      "name": "str"
+                    },
+                    {
+                      "layout": {
+                        "enum": {
+                          "dispatchKey": "0x00000000",
+                          "name": "Option",
+                          "variants": {
+                            "0": {
+                              "fields": [],
+                              "name": "None"
+                            },
+                            "1": {
+                              "fields": [
+                                {
+                                  "layout": {
+                                    "leaf": {
+                                      "key": "0x00000000",
+                                      "ty": 5
+                                    }
+                                  },
+                                  "name": "0"
+                                }
+                              ],
+                              "name": "Some"
+                            }
+                          }
+                        }
+                      },
+                      "name": "updated_at"
+                    }
+                  ],
+                  "name": "SpiritAttributes"
+                }
+              },
+              "name": "init_attributes"
+            }
+          ],
+          "name": "PhalaWorld"
+        }
+      },
+      "root_key": "0x00000000"
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 8
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "int",
+                "type": 4,
+                "typeName": "u32"
+              },
+              {
+                "name": "dex",
+                "type": 4,
+                "typeName": "u32"
+              },
+              {
+                "name": "will",
+                "type": 4,
+                "typeName": "u32"
+              },
+              {
+                "name": "str",
+                "type": 4,
+                "typeName": "u32"
+              },
+              {
+                "name": "updated_at",
+                "type": 12,
+                "typeName": "Option<u64>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "phalaworld",
+          "phalaworld",
+          "SpiritAttributes"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 5
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 15
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 15
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Cyborg"
+              },
+              {
+                "index": 1,
+                "name": "AISpectre"
+              },
+              {
+                "index": 2,
+                "name": "XGene"
+              },
+              {
+                "index": 3,
+                "name": "Pandroid"
+              }
+            ]
+          }
+        },
+        "path": [
+          "phalaworld",
+          "phalaworld",
+          "RaceType"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "Prime"
+              },
+              {
+                "index": 1,
+                "name": "Magic"
+              },
+              {
+                "index": 2,
+                "name": "Legendary"
+              }
+            ]
+          }
+        },
+        "path": [
+          "phalaworld",
+          "phalaworld",
+          "RarityType"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "HackerWizard"
+              },
+              {
+                "index": 1,
+                "name": "HardwareDruid"
+              },
+              {
+                "index": 2,
+                "name": "RoboWarrior"
+              },
+              {
+                "index": 3,
+                "name": "TradeNegotiator"
+              },
+              {
+                "index": 4,
+                "name": "Web3Monk"
+              }
+            ]
+          }
+        },
+        "path": [
+          "phalaworld",
+          "phalaworld",
+          "CareerType"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 20
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 20
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "TokenNotFound"
+              },
+              {
+                "index": 1,
+                "name": "InvalidStatusCode"
+              },
+              {
+                "index": 2,
+                "name": "InvalidBody"
+              },
+              {
+                "index": 3,
+                "name": "ParseError"
+              },
+              {
+                "index": 4,
+                "name": "InvalidAddress"
+              },
+              {
+                "index": 5,
+                "name": "ExecuteError"
+              },
+              {
+                "index": 6,
+                "name": "NotOverlord"
+              },
+              {
+                "index": 7,
+                "name": "NotReady"
+              },
+              {
+                "index": 8,
+                "name": "ProvenFailed"
+              }
+            ]
+          }
+        },
+        "path": [
+          "phalaworld",
+          "phalaworld",
+          "Error"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 23
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 23
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 23,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 24
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 24
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "name",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "description",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "external_url",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "image",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "attributes",
+                "type": 25,
+                "typeName": "Vec<NftAttribtue>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "phalaworld",
+          "phalaworld",
+          "NftMetadata"
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 26
+          }
+        }
+      }
+    },
+    {
+      "id": 26,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "trait_type",
+                "type": 3,
+                "typeName": "String"
+              },
+              {
+                "name": "value",
+                "type": 3,
+                "typeName": "String"
+              }
+            ]
+          }
+        },
+        "path": [
+          "phalaworld",
+          "phalaworld",
+          "NftAttribtue"
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 28
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 28
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 29
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 29
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "id",
+                "type": 4,
+                "typeName": "u32"
+              },
+              {
+                "name": "owner",
+                "type": 0,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "generation",
+                "type": 4,
+                "typeName": "u32"
+              },
+              {
+                "name": "rarity",
+                "type": 17,
+                "typeName": "RarityType"
+              },
+              {
+                "name": "race",
+                "type": 15,
+                "typeName": "RaceType"
+              },
+              {
+                "name": "career",
+                "type": 18,
+                "typeName": "CareerType"
+              }
+            ]
+          }
+        },
+        "path": [
+          "phalaworld",
+          "phalaworld",
+          "Nft"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 31
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 31
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 4
+          }
+        }
+      }
+    },
+    {
+      "id": 32,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 33
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 33
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 33,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 34
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 34
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 29
+          }
+        }
+      }
+    },
+    {
+      "id": 35,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 36
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 36
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 36,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 8
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 8
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 37,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 38
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 38
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 38,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 6
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 6
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 39,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 0
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 0
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 40,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 41
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 41
+          },
+          {
+            "name": "E",
+            "type": 9
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 41,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 11
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 21
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 11
+          },
+          {
+            "name": "E",
+            "type": 21
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 43,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 44,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "pink_extension",
+          "chain_extension",
+          "PinkExt"
+        ]
+      }
+    }
+  ],
+  "version": "4"
+}
