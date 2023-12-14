@@ -3,16 +3,15 @@
 extern crate alloc;
 
 #[ink::contract]
-mod instantiate_proxy {
+mod instantiation_proxy {
     use alloc::vec::Vec;
-    use ink::env::{
-        call::{build_create, ExecutionInput, Selector},
-        ContractEnv, DefaultEnvironment,
-    };
+    use ink::env::call::{build_create, ExecutionInput, Selector};
     use scale::{Decode, Encode};
 
+    type EncodedConstructorError = Vec<u8>;
+
     #[ink(storage)]
-    pub struct InstantiateProxy {}
+    pub struct InstantiationProxy {}
 
     #[derive(Encode, Decode, Debug, PartialEq, Eq)]
     #[cfg_attr(feature = "std", derive(scale_info::TypeInfo))]
@@ -21,7 +20,7 @@ mod instantiate_proxy {
         Failed,
     }
 
-    impl InstantiateProxy {
+    impl InstantiationProxy {
         #[ink(constructor)]
         pub fn new(success: bool) -> Self {
             if success {
@@ -41,21 +40,25 @@ mod instantiate_proxy {
         }
 
         /// Proxy a contract instantiation
+        ///
+        /// Returns Ok(address) on success, Err(error) on failure where error is the original
+        /// constructor error encoded in SCALE.
         #[ink(message)]
         pub fn instantiate(
             &mut self,
             code_hash: Hash,
-            selector: [u8; 4],
+            constructor_selector: [u8; 4],
             encoded_args: Vec<u8>,
             salt: Vec<u8>,
-        ) -> Result<AccountId, Vec<u8>> {
-            use types::{ConstructorError, ContractRef, Data};
+        ) -> Result<AccountId, EncodedConstructorError> {
+            use types::{ConstructorError, ContractRef, Encoded};
 
             build_create::<ContractRef>()
                 .code_hash(code_hash)
                 .endowment(self.env().transferred_value())
                 .exec_input(
-                    ExecutionInput::new(Selector::new(selector)).push_arg(Data(encoded_args)),
+                    ExecutionInput::new(Selector::new(constructor_selector))
+                        .push_arg(Encoded(encoded_args)),
                 )
                 .salt_bytes(&salt)
                 .returns::<Result<ContractRef, ConstructorError>>()
@@ -67,9 +70,9 @@ mod instantiate_proxy {
 
     mod types {
         use super::*;
-        use ink::env::call::FromAccountId;
+        use ink::env::{call::FromAccountId, ContractEnv, DefaultEnvironment};
 
-        pub type ConstructorError = Data;
+        pub type ConstructorError = Encoded;
         pub struct ContractRef(pub AccountId);
         impl ContractEnv for ContractRef {
             type Env = DefaultEnvironment;
@@ -79,13 +82,13 @@ mod instantiate_proxy {
                 Self(account_id)
             }
         }
-        pub struct Data(pub Vec<u8>);
-        impl Encode for Data {
+        pub struct Encoded(pub Vec<u8>);
+        impl Encode for Encoded {
             fn encode_to<T: scale::Output + ?Sized>(&self, dest: &mut T) {
                 dest.write(&self.0)
             }
         }
-        impl Decode for Data {
+        impl Decode for Encoded {
             fn decode<I: scale::Input>(input: &mut I) -> Result<Self, scale::Error> {
                 let mut buffer = vec![0u8; input.remaining_len()?.ok_or("unknown input length")?];
                 input.read(&mut buffer[..])?;
@@ -103,11 +106,11 @@ mod instantiate_proxy {
             use drink_pink_runtime::{code_hash, Callable, DeployBundle};
             use ink::codegen::TraitCallBuilder;
 
-            let wasm = include_bytes!("./target/ink/instantiate_proxy.wasm");
+            let wasm = include_bytes!("./target/ink/instantiation_proxy.wasm");
             let code_hash = code_hash(wasm);
             let mut session =
                 drink::session::Session::<drink_pink_runtime::PinkRuntime>::new().unwrap();
-            let mut proxy = InstantiateProxyRef::new(true)
+            let mut proxy = InstantiationProxyRef::new(true)
                 .deploy_wasm(wasm, &mut session)
                 .unwrap();
 
