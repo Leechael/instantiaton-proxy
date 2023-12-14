@@ -23,6 +23,8 @@ async function main() {
   const selector = abi.constructors.find(i => i.identifier === constructorName)?.selector.toU8a()
   const arg0 = client.api.createType('String', args[0]).toU8a()
   const arg1 = client.api.createType('Option<String>', args[1]).toU8a()
+  // NOTE: We need to add the length prefix, otherwise, the polkadot-js will encode Vec<u8> incorrectly
+  // https://github.com/polkadot-js/api/blob/2d26e748f0e28a1d30ecb589eded677385476855/packages/types-codec/src/base/Vec.ts#L20-L21
   const encoded = compactAddLength(new Uint8Array([...arg0, ...arg1]))
   const codeHash = abi.info.source.wasmHash
   console.log('contructor & args:', constructorName, args)
